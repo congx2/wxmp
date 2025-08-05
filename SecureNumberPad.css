@@ -1,0 +1,54 @@
+.secure-keyboard {
+  max-width: 320px;
+  margin: 20px auto;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.input-display {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin-bottom: 15px;
+  user-select: none;
+  color: #333;
+}
+
+.placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.keypad {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.key {
+  height: 50px;
+  font-size: 18px;
+  border: 1px solid #ddd;
+  background: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+}
+
+.key:active {
+  background: #e0e0e0;
+  transform: translateY(1px);
+}
+
+.key-← {
+  grid-column: 3;
+  background: #ff6b6b;
+  color: white;
+}
+
+.key-←:active {
+  background: #e05656;
+}
