@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import './SecureNumberPad.css';
 
 /**
@@ -24,20 +24,25 @@ const SecureNumberPad = ({
   shuffle = true 
 }) => {
   const [vb, setVb] = useState(false)
+  const [keys, setKeys] = useState([])
   useEffect(() => {
     console.log('navigator.vibrate: ', navigator.vibrate)
     console.log('navigator.vibrate typeof: ', typeof navigator.vibrate)
     const vb = navigator && typeof navigator.vibrate === 'function'
     setVb(vb)
   }, [])
-  // 数字按键（可打乱顺序增强安全）
-  const dot = '.'
-  const del = '←'
-  const keyItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]; // . 可用于金额
-  const keys = shuffle ? shuffled(keyItems) : keyItems.slice()
-  keys.splice(9, 0, dot)
-  keys.push(del)
-  console.log('keys: ', keys)
+  useEffect(() => {
+    // 数字按键（可打乱顺序增强安全）
+    const dot = '.'
+    const del = '←'
+    const keyItems = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]; // . 可用于金额
+    const keys = shuffle ? shuffled(keyItems) : keyItems.slice()
+    keys.splice(9, 0, dot)
+    keys.push(del)
+    console.log('keys: ', keys)
+    setKeys(keys)
+  }, [])
+ 
   // 触发震动 
   const vibrate = () => {
     if (enableVibration && navigator.vibrate) {
@@ -86,4 +91,4 @@ const SecureNumberPad = ({
   );
 };
 
-export default SecureNumberPad;
+export default SecureNumberPad
